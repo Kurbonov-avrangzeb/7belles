@@ -9,13 +9,8 @@ Complete with
   * Payment handled with Stripe
   * Use of both class-based and fuction-based components (will upgrade to all function-based in the future)
 
-### Sneak peak
-![Tours](./public/screenshots/tours.png)
-![Admin Page](./public/screenshots/createtour.png)
-![Stripe](./public/screenshots/stripe.png)
 
-### Deployed 
-[Live](https://go-travel-agency.herokuapp.com/)
+
 
 ### Install 
 
