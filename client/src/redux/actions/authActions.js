@@ -19,13 +19,16 @@ import history from '../../history';
 
 // LOAD USER
 export const loadUser = () => async dispatch => {
+  
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
   try {
     const response = await api.get('/api/v1/users/me');
+    console.log(response)
     dispatch({ type: USER_LOADED, payload: response.data });
   } catch (err) {
+    console.log(err)
     dispatch({ type: AUTH_ERROR });
   }
 }
@@ -42,7 +45,7 @@ export const logIn = (formValues) => async dispatch => {
 
   try {
     const response = await api.post('/api/v1/users/login', body, config);
-    dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+    dispatch({ type: LOGIN_SUCCESS, payload: response.data});
     dispatch(loadUser());
     
     history.push('/');

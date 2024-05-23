@@ -9,9 +9,8 @@
     "debug": "ndb server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
-  },
+    "start": "node server.js"
+    },
   "author": "111",
   "license": "ISC",
   "dependencies": {

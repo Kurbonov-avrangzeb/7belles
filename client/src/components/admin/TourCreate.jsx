@@ -95,6 +95,7 @@ const validate = ({ name, price, maxGroupSize, duration, summary, startDates, de
   const errors = {};
 
   if (!name) errors.name = 'Введите название тура';
+  else if (name?.length < 10 ) errors.name = 'Название тура должно иметь минимум 10 символов!';
   if (!price) errors.price = 'Введите цену';
   if (!maxGroupSize) errors.maxGroupSize = 'Введите количество участников';
   if (!duration) errors.duration = 'Введите продолжительность';

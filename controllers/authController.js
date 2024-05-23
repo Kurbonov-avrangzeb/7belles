@@ -19,9 +19,9 @@ const createSendToken = (user, statusCode, res) => {
   };
 
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
-
+  
   res.cookie('jwt', token, cookieOptions);
-
+ 
   user.password = '';
 
   return res.status(statusCode).json({
@@ -80,12 +80,7 @@ exports.logout = (req, res) => {
 exports.protect = catchAsync(async (req, res, next) => {
   let token;
 
-  // 1) Get token and check if exists
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-    token = req.headers.authorization.split(' ')[1];
-  } else if (req.cookies.jwt) {
-    token = req.cookies.jwt
-  }
+  token = req?.cookies?.jwt
 
   if (!token) {
     return next(new AppError('You are not logged in. Please log in to get access', 401));
@@ -112,8 +107,10 @@ exports.protect = catchAsync(async (req, res, next) => {
 
 // CHECK IF USER IS LOGGED IN
 exports.isLoggedIn = async (req, res, next) => {
+  
   try {
     if (req.cookies.jwt) {
+      console.log('has cookie')
       const decoded = await promisify(jwt.verify)(
         req.cookies.jwt, process.env.JWT_SECRET
       );
@@ -134,6 +131,7 @@ exports.isLoggedIn = async (req, res, next) => {
       return next();
     }
   } catch (err) {
+    console.log(err)
     return next();
   }
 };

@@ -33,7 +33,7 @@ class HomePage extends Component {
     }
 
     return (
-      <PageWrapper>
+      <>
         <Hero />
         <div style={{margin: '0 1rem'}}>
         <AboutUs />
@@ -44,16 +44,12 @@ class HomePage extends Component {
         <Gallery tours={this.props.tours} />
         </div>
         <Footer light />
-      </PageWrapper>
+    </>
     )
   }
 }
 
-const PageWrapper = styled.div`
-  @media (min-width: 768px) {
-    margin: 1.5rem;
-  }
-`
+
 
 const mapStateToProps = state => {
   return { tours: Object.values(state.tours) }

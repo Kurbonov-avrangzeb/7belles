@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Switch, Router } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { setAuthToken } from './utils/setAuthToken';
 import { loadUser } from './redux/actions/authActions';
 import { store } from './redux/store';
@@ -21,16 +21,19 @@ import ToursPage from './pages/ToursPage';
 import './app.css';
 import SingleTourPage from './pages/SingleTourPage';
 import ScrollToTop from './ScrollToTop';
+import PrivateRoutes from './PrivateRoutes';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
 const App = () => {
+  
   // ONLY RUN ONCE WHEN LOADED
- 
+
   useEffect(() => {
     store.dispatch(loadUser())
+    console.log(store.getState())
     return () => {
       //cleanup
     }
@@ -53,15 +56,15 @@ const App = () => {
       <Header />
       <Route exact path='/tours' component={ToursPage} />
       <Route path='/tours/:id' component={SingleTourPage} />
-      <Route path='/me/profile' component={ProfilePage} />
-      <Route path='/me/bookings' component={BookingsPage} />
-      <Route exact path='/admin/tours' component={AdminToursPage} />
-      <Route exact path='/admin/tours/create' component={TourCreate} />
-      <Route path='/admin/tours/edit/:id' component={TourEdit} />
-      <Route path='/admin/tours/delete/:id' component={TourDelete} />
+      <PrivateRoutes path='/me/profile' component={ProfilePage} />
+      <PrivateRoutes path='/me/bookings' component={BookingsPage} />
+     <PrivateRoutes admin exact path='/admin/tours' component={AdminToursPage}/>
+      <PrivateRoutes admin exact path='/admin/tours/create' component={TourCreate} />
+      <PrivateRoutes admin path='/admin/tours/edit/:id' component={TourEdit} />
+      <PrivateRoutes admin  path='/admin/tours/delete/:id' component={TourDelete} />
     </div>
   )
-
+  
   return (
     <Router history={history}>
       <ScrollToTop/>

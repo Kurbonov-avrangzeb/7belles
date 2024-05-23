@@ -21,7 +21,7 @@ const app = express();
 // to serve static files
 app.use(express.static(path.join(__dirname, 'client', 'build')))
 
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 // Set Security HTTP Headers
 app.use(helmet());

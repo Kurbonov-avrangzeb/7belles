@@ -3,13 +3,11 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const PrivateRoutes = ({ component: Component, auth, ...otherProps }) => {
-  // if(!auth.isSignedIn){
-  //   return null;
-  // }
+  console.log(otherProps)
   return (
     <Route
       {...otherProps}
-      render={props => !auth.isSignedIn
+      render={props => !auth.isSignedIn && (!(otherProps?.admin && auth?.user?.role === 'user'))
         ? <Redirect to='/login' />
         : <Component {...props} />}
     />
@@ -17,7 +15,7 @@ const PrivateRoutes = ({ component: Component, auth, ...otherProps }) => {
 }
 
 const mapStateToProps = state => {
-  return { auth: state.auth }
+  return { auth: state.auth}
 }
 
 export default connect(mapStateToProps)(PrivateRoutes)

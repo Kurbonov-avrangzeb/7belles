@@ -14,11 +14,12 @@ const Header = (props) => {
   const [dropDown, setDropDown] = useState(false);
 
   const renderDropdown = () => setDropDown(!dropDown);
-
+  console.log(props)
   // RENDER NAV LINKS
   const renderLinks = navLinks.map(nav => {
-    if (props.auth.isSignedIn && nav.text === 'login') {
+    if (props.auth.isSignedIn && nav.text === 'Вход') {
       if (props.auth.user) {
+     
         const name = props.auth.user.name.split(' ')[0];
         return (
           <Fragment key={nav.text}>

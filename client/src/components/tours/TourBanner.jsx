@@ -6,7 +6,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components';
 import history from '../../history';
 
-const stripePromise = loadStripe('pk_test_51HRLnVLvko24kY0Nr99KNbtMFmDxl640uBpsdgKwEVgZXb7Evf0kVOo3RZrWdXCmyYPZziPE3S5HeyExG2eAPooL00Z62Uw8nQ');
+const stripePromise = loadStripe('pk_test_51PIwPFGBb5DoC0tyOv14Sd2OI5CxWa1LIDZslelM99f1p4hamGeOsnfaJtTNejqXmgb5nZKZjt7zfheeN5qCUwfJ00loq3tonm');
 
 const TourBanner = ({ id, duration, processPayment, isSignedIn }) => {
 
